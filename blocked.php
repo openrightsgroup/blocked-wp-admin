@@ -1,14 +1,14 @@
 <?php
 /**
  * @package BlockedWP
- * @version 0.1
+ * @version 0.5
  */
 /*
 Plugin Name: Blocked-WP
 Plugin URI: https://www.blocked.org.uk/wp-plugin/
 Description: A plugin that adds UK ISP parental control monitoring to the Wordpress Admin panel.
 Author: Open Rights Group
-Version: 0.1
+Version: 0.5
 Author URI: https://www.openrightsgroup.org/
 */
 
@@ -18,7 +18,7 @@ if ( !function_exists( 'add_action' ) ) {
     exit;
 }
 
-define( 'BLOCKED_WP_VERSION', '0.1' );
+define( 'BLOCKED_WP_VERSION', '0.5' );
 define( 'BLOCKED_WP__MINIMUM_WP_VERSION', '4.0' );
 define( 'BLOCKED_WP__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 

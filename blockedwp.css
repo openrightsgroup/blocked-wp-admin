@@ -1,0 +1,25 @@
+
+.blocked {
+    background-color: #EFCFCF;
+}
+
+.ok {
+    background-color: #CFEFCF;
+}
+
+.timeout, .sslerror, .error {
+    background-color: #EFEFCF;
+}
+
+table {
+    width: 90%;
+    min-width: 400px;
+}
+
+td:first-child {
+    text-align: left;
+}
+
+td {
+    text-align: right;
+}

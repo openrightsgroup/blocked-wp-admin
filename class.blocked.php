@@ -17,6 +17,7 @@ class BlockedWP {
         add_action( 'admin_init', array( 'BlockedWP', 'admin_init' ) );
         add_action( 'admin_menu', array( 'BlockedWP', 'admin_menu' ), 5 ); # Priority 5, so it's called before Jetpack's admin_menu.
         //add_action( 'admin_notices', array( 'BlockedWP', 'display_notice' ) );
+        add_action( 'admin_enqueue_scripts', array('BlockedWP', 'load_resources'));
     }
 
     public static function admin_init() {
@@ -52,6 +53,10 @@ class BlockedWP {
 
 ?>
     <h1>Blocked-WP Admin</h1>
+        <p>This plugin registers your site with <a href="https://www.blocked.org.uk">Blocked!</a>, a site monitoring platform provided by <a href="https://www.openrightsgroup">Open Rights Group</a>.</p>
+        <p>The Blocked! platform checks your site through the parental control filters on major UK ISPs, and report back to you on this status screen.</p>
+
+
 
         <form method="POST">
             <?php if (! get_option(BlockedWP::OPTION_REGISTERED, false)): ?>
@@ -61,14 +66,16 @@ class BlockedWP {
                 <input class="button button-primary" type="submit" value="Unregister <?php echo get_option("siteurl") ?>" />
                 <input type="hidden" name="action" value="unregister" />
             <?php endif ?>
-            <input class="button button-primary" type="submit" name="submitsite" value="Submit Site" />
+            <!-- <input class="button button-primary" type="submit" name="submitsite" value="Submit Site" /> -->
         </form>
-        <?php echo get_option(BlockedWP::OPTION_REGISTERED, false); ?> <br/>
-        <?php echo get_option("admin_email", false); ?> <br/>
-        <?php echo get_option("siteurl", false); ?> <br/>
-        <?php echo get_option(BlockedWP::OPTION_SECRET, false); ?> <br/>
 <?php
-        BlockedWP::format_results( BlockedWP::get_results() );
+        if (get_option(BlockedWP::OPTION_REGISTERED)) {
+            BlockedWP::format_results(BlockedWP::get_results());
+        }
+?>
+        <p><a class="button button-primary" href="https://www.blocked.org.uk/site/<?php echo get_option('siteurl')?>">View full results</a></p>
+        <p><a href="https://www.blocked.org.uk">About Blocked!</a> | <a href="">Privacy Policy</a></p>
+<?php
     }
 
     public static function register_user() {
@@ -86,6 +93,8 @@ class BlockedWP {
         } else {
             $jsonresponse = json_decode($response['body']);
             update_option(BlockedWP::OPTION_SECRET, $jsonresponse->secret);
+
+            BlockedWP::submit_site();
         }
     }
 
@@ -132,21 +141,26 @@ class BlockedWP {
     <table class="table table-compressed" style="margin-top: 2em; margin-left: 4em; margin-right: 4em">
         <tr>
             <th style="width: 50%">Network</th>
-            <th style="width: 25%; text-align: right">Checked at</th>
+            <th style="width: 25%">Checked at</th>
             <th style="width: 25%">Result</th>
         </tr>
 <?php
     foreach($results as $result):
 ?>
-        <tr>
+        <tr class="<?php echo $result->status; ?>">
             <td><?php echo $result->network_name; ?></td>
-            <td style="text-align: right"><?php echo $result->status_timestamp; ?></td>
-            <td style="text-align: right"><?php echo $result->status; ?></td>
+            <td><?php echo $result->status_timestamp; ?></td>
+            <td><?php echo $result->status; ?></td>
         </tr>
 <?php
     endforeach
 ?>
     </table>
 <?php
+    }
+
+    public static function load_resources() {
+        wp_register_style( 'blockedwp.css', plugin_dir_url( __FILE__ ) . 'blockedwp.css', array(), BLOCKED_WP_VERSION );
+        wp_enqueue_style( 'blockedwp.css');
     }
 }
