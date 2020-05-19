@@ -60,10 +60,10 @@ class BlockedWP {
 
         <form method="POST">
             <?php if (! get_option(BlockedWP::OPTION_REGISTERED, false)): ?>
-                <input class="button button-primary" type="submit" value="Register <?php echo get_option("siteurl") ?> with www.blocked.org.uk" />
+                <input class="button button-primary" type="submit" value="Register <?php echo get_option("home") ?> with www.blocked.org.uk" />
                 <input type="hidden" name="action" value="register" />
             <?php else: ?>
-                <input class="button button-primary" type="submit" value="Unregister <?php echo get_option("siteurl") ?>" />
+                <input class="button button-primary" type="submit" value="Unregister <?php echo get_option("home") ?>" />
                 <input type="hidden" name="action" value="unregister" />
             <?php endif ?>
             <!-- <input class="button button-primary" type="submit" name="submitsite" value="Submit Site" /> -->
@@ -73,7 +73,7 @@ class BlockedWP {
             BlockedWP::format_results(BlockedWP::get_results());
         }
 ?>
-        <p><a class="button button-primary" href="https://www.blocked.org.uk/site/<?php echo get_option('siteurl')?>">View full results</a></p>
+        <p><a class="button button-primary" href="https://www.blocked.org.uk/site/<?php echo get_option('home')?>">View full results</a></p>
         <p><a href="https://www.blocked.org.uk">About Blocked!</a> | <a href="">Privacy Policy</a></p>
 <?php
     }
@@ -104,7 +104,7 @@ class BlockedWP {
                 'Authorization' => "Basic " . base64_encode(get_option('admin_email') . ':' . get_option(BlockedWP::OPTION_SECRET))
             ),
             'body' => array(
-                "url" => get_option('siteurl'),
+                "url" => get_option('home'),
                 "source" => "wp-plugin",
                 "email" => get_option('admin_email')
             )
@@ -118,7 +118,7 @@ class BlockedWP {
 
     public static function get_results() {
         $args = array(
-            "url" => get_option('siteurl'),
+            "url" => get_option('home'),
         );
         $options = array(
             "headers" => array(
