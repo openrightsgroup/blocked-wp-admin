@@ -109,7 +109,7 @@ class BlockedWP {
                 "email" => get_option('admin_email')
             )
         );
-        print_r($args);
+
         $response = wp_remote_post("https://" . BlockedWP::API_HOST . '/1.2/submit/url', $args);
 
         error_log("submit site: " . $response['response']['code']);
