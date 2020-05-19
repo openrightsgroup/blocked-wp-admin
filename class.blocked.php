@@ -55,7 +55,7 @@ class BlockedWP {
 ?>
     <h1>Blocked-WP Admin</h1>
         <p>This plugin registers your site with <a href="https://www.blocked.org.uk">Blocked!</a>, a site monitoring platform provided by <a href="https://www.openrightsgroup">Open Rights Group</a>.</p>
-        <p>The Blocked! platform checks your site through the parental control filters on major UK ISPs, and report back to you on this status screen.</p>
+        <p>The Blocked! platform checks your site through the parental control filters on major UK ISPs, and reports back to you on this status screen.</p>
 
 
 
