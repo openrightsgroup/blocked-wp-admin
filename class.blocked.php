@@ -10,6 +10,7 @@ class BlockedWP {
     public static function init() {
         if (! self::$initiated) {
             self::init_hooks();
+            self::$initiated = true;
         }
     }
 
