@@ -5,13 +5,13 @@ Admin plugin for Wordpress, showing the site's status on blocked.org.uk
 
 Ensure that the admin email address for your wordpress site is correct.
 
-1. Download a release from the [Release](https://github.com/openrightsgroup/blocked-wp-admin/releases/tag/v0.6-alpha) page
-2. Log in to your wordpress installation as an administrator, go to Plugins -> Add New.  Click "Upload plugin", and select the downloaded zip file.
+1. Download a release from the [Release](https://github.com/openrightsgroup/blocked-wp-admin/releases/) page
+2. Log in to your wordpress installation as an administrator, go to Plugins ➔ Add New.  Click "Upload plugin", and select the downloaded zip file.
 3. On the next screen, click the "Activate Plugin" button.
-4. Go to the "Settings" -> "BlockedWP Admin" page
+4. Go to the "Settings" ➔ "BlockedWP Admin" page
 5. Click the "Register {your site name}" button.
 
-Whenever you visit the "Settings" -> "BlockedWP Admin" page, you will be able to see the most recent scan results for your site.  
+Whenever you visit the "Settings" ➔ "BlockedWP Admin" page, you will be able to see the most recent scan results for your site.  
 Your site will be tested weekly by the blocked.org.uk platform.
 
 # Upgrading
