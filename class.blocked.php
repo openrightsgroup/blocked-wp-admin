@@ -184,7 +184,7 @@ class BlockedWP {
 
     function format_results($results) {
 ?>
-    <table class="table table-compressed" style="margin-top: 2em; margin-left: 4em; margin-right: 4em">
+    <table class="table table-compressed" id="blockedwp-results" style="">
         <tr>
             <th style="width: 50%">Network</th>
             <th style="width: 25%">Checked at</th>
@@ -193,7 +193,7 @@ class BlockedWP {
 <?php
     foreach($results as $result):
 ?>
-        <tr class="<?php echo $result->status; ?>">
+        <tr class="blockedwp-<?php echo $result->status; ?>">
             <td><?php echo $result->network_name; ?></td>
             <td><?php echo $result->status_timestamp; ?></td>
             <td><?php echo $result->status; ?></td>

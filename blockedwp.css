@@ -1,25 +1,28 @@
 
-.blocked {
+.blockedwp-blocked {
     background-color: #EFCFCF;
 }
 
-.ok {
+.blockedwp-ok {
     background-color: #CFEFCF;
 }
 
-.timeout, .sslerror, .error {
+.blockedwp-timeout, .blockedwp-sslerror, .blockedwp-error {
     background-color: #EFEFCF;
 }
 
-table {
+#blockedwp-results {
     width: 90%;
     min-width: 400px;
+    margin-top: 2em;
+    margin-left: 4em;
+    margin-right: 4em
 }
 
-td:first-child {
+#blockedwp-results td:first-child {
     text-align: left;
 }
 
-td {
+#blockedwp-results td {
     text-align: right;
 }
