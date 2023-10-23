@@ -34,7 +34,6 @@ class BlockedWP {
     }
 
     public static function admin_init() {
-        error_log("admin_init");
         if ( get_option('Activated BlockedWP')) {
             delete_option( 'Activated BlockedWP');
         }
@@ -57,7 +56,6 @@ class BlockedWP {
     }
 
     public static function update_lastview() {
-        error_log("update");
         update_option(BlockedWP::OPTION_LAST_VIEW, BlockedWP::datestamp());
     }
 
@@ -146,7 +144,6 @@ class BlockedWP {
 
         $response = wp_remote_post("https://" . BlockedWP::API_HOST . '/1.2/submit/url', $args);
 
-        error_log("submit site: " . $response['response']['code']);
 
     }
 
@@ -211,7 +208,6 @@ class BlockedWP {
     }
 
     public static function invoke_cron() {
-        error_log("ran_cron");
         if (!BlockedWP::is_registered()) {
             return;
         }
